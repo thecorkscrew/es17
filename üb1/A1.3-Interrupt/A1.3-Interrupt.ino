@@ -12,9 +12,9 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(led, OUTPUT);
   pinMode(button1, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(button1), switchLedState, RISING);
-  pinMode(button2, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(button2), switchLedState, RISING);
+  attachInterrupt(digitalPinToInterrupt(button1), switchLedState, FALLING);
+  pinMode(button2, INPUT);
+  attachInterrupt(digitalPinToInterrupt(button2), switchLedState, FALLING);
 }
 
 void loop() {
