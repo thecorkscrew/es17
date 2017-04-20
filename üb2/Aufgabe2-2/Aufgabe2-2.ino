@@ -6,6 +6,9 @@ int button2 = 3;
 int led_state = LOW;
 int lastButtonState = HIGH;
 int val = 0;
+int minimum = 0;
+int maximum = 256;
+int step = (maximum-minimum)/8;   //8 Schritte
 DueTimer timer;
 
 void setup() {
@@ -32,10 +35,16 @@ void changeLedState() {
   //Interrupt wird sowieso ausgelöst, schau, ob auch Knopf gedrückt ist
   //lastButtonState verhindert wiederholtes interrupten
   if(button1 = LOW && lastButtonState == HIGH) {
-    val = val + 32;
+    val = val + step;
+    if(val >= maximum) {
+      val = minimum;
+    }
     lastButtonState = LOW;
   } else if(button2 = LOW && lastButtonState == HIGH) {
-    val = val - 32;
+    val = val - step;
+    if(val <= minimum) {
+      val = maximum;
+    }
     lastButtonState = LOW;
   } else {
     lastButtonState = HIGH;
